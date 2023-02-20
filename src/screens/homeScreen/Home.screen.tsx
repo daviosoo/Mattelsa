@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { useState } from 'react';
 import {
   ImageBackground,
@@ -13,15 +15,10 @@ import {
 } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import Accordion from 'react-native-collapsible/Accordion';
-//@ts-ignore
 import RabbitLogo from './../../assets/RabbitLogo.svg';
-//@ts-ignore
 import InstagramLogo from './../../assets/InstagramMobile.svg';
-//@ts-ignore
 import FacebookLogo from './../../assets/FacebookMobile.svg';
-//@ts-ignore
 import SpotifyLogo from './../../assets/SpotifyMobile.svg';
-//@ts-ignore
 import TwitterLogo from './../../assets/TwitterMobile.svg';
 
 import EntypoIcon from 'react-native-vector-icons/Entypo';
@@ -32,7 +29,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-function HomeScreen(): JSX.Element {
+function HomeScreen({navigation}): JSX.Element {
   const [activeSections, setActiveSections] = useState([]);
 
   const SECTIONS = [
@@ -91,6 +88,7 @@ function HomeScreen(): JSX.Element {
           name={isActive ? 'chevron-small-up' : 'chevron-small-down'}
           size={30}
           style={styles.iconHeaderFooter}
+          color={'gray'}
         />
       </View>
     );
@@ -126,14 +124,18 @@ function HomeScreen(): JSX.Element {
             <View style={styles.containerButtons}>
               <TouchableHighlight
                 underlayColor={'transparent'}
-                onPress={() => Alert.alert('man !')}>
+                onPress={() =>
+                  navigation.navigate('Products', { section: 'hombre' })
+                }>
                 <View style={styles.button}>
                   <Text style={styles.textButton}>hombre</Text>
                 </View>
               </TouchableHighlight>
               <TouchableHighlight
                 underlayColor={'transparent'}
-                onPress={() => Alert.alert('woman !')}>
+                onPress={() =>
+                  navigation.navigate('Products', { section: 'mujer' })
+                }>
                 <View style={styles.button}>
                   <Text style={styles.textButton}>mujer</Text>
                 </View>
@@ -145,7 +147,7 @@ function HomeScreen(): JSX.Element {
         <TouchableHighlight
           style={styles.imgSection}
           underlayColor={'transparent'}
-          onPress={() => Alert.alert('sweather !')}>
+          onPress={() => navigation.navigate('Products', { section: 'Buzos' })}>
           <View>
             <AutoHeightImage
               source={require('./../../assets/01buzosm30012023.jpeg')}
@@ -157,7 +159,7 @@ function HomeScreen(): JSX.Element {
         <TouchableHighlight
           style={styles.imgSection}
           underlayColor={'transparent'}
-          onPress={() => Alert.alert('jeans !')}>
+          onPress={() => navigation.navigate('Products', { section: 'Jeans' })}>
           <View>
             <AutoHeightImage
               source={require('./../../assets/02jeansh30012023.jpeg')}
@@ -169,7 +171,9 @@ function HomeScreen(): JSX.Element {
         <TouchableHighlight
           style={styles.imgSection}
           underlayColor={'transparent'}
-          onPress={() => Alert.alert('special !')}>
+          onPress={() =>
+            navigation.navigate('Products', { section: 'Especial graficos' })
+          }>
           <View>
             <AutoHeightImage
               source={require('./../../assets/03graficosh30012023.jpeg')}
@@ -209,12 +213,30 @@ function HomeScreen(): JSX.Element {
 
           <View style={styles.containerHeaderFooter}>
             <View style={{ paddingVertical: 35 }}>
-              <Text style={[styles.footerItem, {fontSize: 16, marginBottom: 20}]}>Términos y Condiciones</Text>
-              <Text style={[styles.footerItem, {fontSize: 16, marginBottom: 20}]}>Política de Privacidad</Text>
-              <Text style={[styles.footerItem, {fontSize: 16, marginBottom: 20}]}>
+              <Text
+                style={[styles.footerItem, { fontSize: 16, marginBottom: 20 }]}>
+                Términos y Condiciones
+              </Text>
+              <Text
+                style={[styles.footerItem, { fontSize: 16, marginBottom: 20 }]}>
+                Política de Privacidad
+              </Text>
+              <Text
+                style={[styles.footerItem, { fontSize: 16, marginBottom: 20 }]}>
                 Superintendencia de Industrua y Comercio
               </Text>
-              <Text style={[styles.footerItem, {color: 'black' , fontWeight: 'bold', marginBottom: 0, fontSize: 14}]}>© 2023 Mattelsa S.A.S</Text>
+              <Text
+                style={[
+                  styles.footerItem,
+                  {
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginBottom: 0,
+                    fontSize: 14,
+                  },
+                ]}>
+                © 2023 Mattelsa S.A.S
+              </Text>
             </View>
           </View>
         </View>
@@ -276,6 +298,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     padding: 20,
+    color: 'black',
   },
   iconHeaderFooter: { position: 'absolute', right: 10, top: 15 },
   containterItemFooter: {

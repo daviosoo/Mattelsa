@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import {
   SafeAreaView,
@@ -9,12 +10,11 @@ import {
 } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
-//@ts-ignore
 import ColombiaLogo from './../../assets/Colombia.svg'
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-function MoreScreen(): JSX.Element {
+function MoreScreen({navigation}): JSX.Element {
   const backgroundStyle = {
     backgroundColor: Colors.white,
   };
@@ -46,6 +46,7 @@ function MoreScreen(): JSX.Element {
               style={{
                 fontSize: 40,
                 fontWeight: 'bold',
+                color: 'black',
               }}>
               Hola, bunny!
             </Text>
@@ -53,36 +54,45 @@ function MoreScreen(): JSX.Element {
           <View style={{ marginBottom: 30 }}>
             <TouchableHighlight
               underlayColor={'white'}
-              onPress={() => Alert.alert('man')}>
+              onPress={() =>
+                navigation.navigate('Products', { section: 'hombre' })
+              }>
               <Text
                 style={{
                   fontSize: 30,
                   fontWeight: 'bold',
                   paddingVertical: 15,
+                  color: 'black',
                 }}>
                 hombre
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={'white'}
-              onPress={() => Alert.alert('mujer')}>
+              onPress={() =>
+                navigation.navigate('Products', { section: 'mujer' })
+              }>
               <Text
                 style={{
                   fontSize: 30,
                   fontWeight: 'bold',
                   paddingVertical: 15,
+                  color: 'black',
                 }}>
                 mujer
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={'white'}
-              onPress={() => Alert.alert('cosas')}>
+              onPress={() =>
+                navigation.navigate('Products', { section: 'cosas' })
+              }>
               <Text
                 style={{
                   fontSize: 30,
                   fontWeight: 'bold',
                   paddingVertical: 15,
+                  color: 'black',
                 }}>
                 cosas
               </Text>
@@ -95,13 +105,14 @@ function MoreScreen(): JSX.Element {
                   fontSize: 30,
                   fontWeight: 'bold',
                   paddingVertical: 15,
+                  color: 'black',
                 }}>
                 activismo
               </Text>
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={'white'}
-              onPress={() => Alert.alert('sale')}>
+              onPress={() => navigation.navigate('SaleScreen')}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -121,6 +132,7 @@ function MoreScreen(): JSX.Element {
                   name={'chevron-small-right'}
                   size={35}
                   style={{ marginTop: 5 }}
+                  color={'gray'}
                 />
               </View>
             </TouchableHighlight>
@@ -135,12 +147,13 @@ function MoreScreen(): JSX.Element {
             <View style={{ marginTop: 30 }}>
               <TouchableHighlight
                 underlayColor={'trasnparent'}
-                onPress={() => Alert.alert('Ingresa')}>
+                onPress={() => navigation.navigate('Login')}>
                 <Text
                   style={{
                     fontSize: 25,
                     fontWeight: 'bold',
                     paddingVertical: 15,
+                    color: 'black',
                   }}>
                   Ingresa
                 </Text>
@@ -153,6 +166,7 @@ function MoreScreen(): JSX.Element {
                     fontSize: 25,
                     fontWeight: 'bold',
                     paddingVertical: 15,
+                    color: 'black',
                   }}>
                   Tiendas
                 </Text>
@@ -164,6 +178,7 @@ function MoreScreen(): JSX.Element {
                     fontSize: 20,
                     fontWeight: 'bold',
                     paddingVertical: 15,
+                    color: 'black',
                   }}>
                   País de envío
                 </Text>
@@ -179,12 +194,24 @@ function MoreScreen(): JSX.Element {
                       borderColor: '#e4e4e4',
                       padding: 20,
                     }}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <View
+                      style={{ flexDirection: 'row', alignItems: 'center' }}>
                       <ColombiaLogo width={25} height={25} />
-                      <Text style={{ fontWeight: 'bold', marginLeft: 10, color:'gray' }}>Colombia | COP</Text>
+                      <Text
+                        style={{
+                          fontWeight: 'bold',
+                          marginLeft: 10,
+                          color: 'gray',
+                        }}>
+                        Colombia | COP
+                      </Text>
                     </View>
 
-                    <EntypoIcon name={'chevron-small-down'} size={30} color={'gray'}/>
+                    <EntypoIcon
+                      name={'chevron-small-down'}
+                      size={30}
+                      color={'gray'}
+                    />
                   </View>
                 </TouchableHighlight>
               </View>
